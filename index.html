@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sketch">
+<head>
+	<meta charset="UTF-8">
+	<title>Sketch</title>
+  <script src="js/angular.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/change.js"></script>
+
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body ng-controller="sketchController">
+  <div class="biginner">
+    <div  class="buttons zhixian" ng-repeat="(key, value) in tools" ng-click="settool(value)" ng-class="{active:value==tool}">{{key}}</div>  
+
+    <div class="leftcolor">
+      <img src="image/2016-02-24_221928.png" alt="" class="imgs" ng-click="setStyle('stroke')">
+      <div class="colors"ng-repeat="(key, value) in colors" ng-class="colors[key] " ng-click="cssState.strokeStyle=value;setStyle('stroke')"></div>
+
+      <input type="color" class="input-color"  value="#FF0000" ng-model="cssState.strokeStyle">
+    </div>
+    <div class="rightcolor">
+      <img src="image/2016-02-24_222004.png" alt="" class="imgs"ng-click="setStyle('fill')"ng-click="cssState.fillStyle=value">
+
+      <div class="colors"ng-repeat="(key, value) in colors" ng-class="colors[key]"ng-click="cssState.fillStyle=value;setStyle('fill')"></div>
+
+      <input type="color" class="input-color"  value="#FFFFFF" ng-model="cssState.fillStyle">
+
+    </div>
+<!-- <div class="buttons qianbi"ng-click="qianbis()">铅笔(Y)</div>  
+  <div class="buttons xiangpi">橡皮擦(X)</div> -->
+  <div class="xiankuan">
+    <input type="range"ng-model="cssState.lineWidth"min="1" max="30">
+  </div>
+  <div class="buttons newadd" ng-click="newSet()">新增(n)</div> 
+  <a class="buttons baocun" ng-click="savesCanvas($event)">保存(S)</a>  
+  <div class="buttons qingkong" ng-click="clearCanvas()">清空(K)</div>    
+  <canvas width="838" height="538" id="canvas"></canvas>  
+  </div>
+
+
+</body>
+
+</html>
